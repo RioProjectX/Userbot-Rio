@@ -13,7 +13,7 @@ COPY ./sample_config.env ./config.env* /home/man-userbot/
 WORKDIR /home/man-userbot/
 
 #Install python requirements
-RUN pip3 install -r https://raw.githubusercontent.com/mrismanaziz/Man-Userbot/Man-Userbot/requirements.txt
+RUN pip3 install -r https://raw.githubusercontent.com/mrismanaziz/Man-Userbot/alpha/requirements.txt
 
 # Finalization
 CMD ["python3","-m","userbot"]
