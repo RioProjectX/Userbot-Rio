@@ -5,6 +5,7 @@
 #
 # Recode by @mrismanaziz
 # @SharingUserbot
+#
 """ Userbot module for keeping control who PM you. """
 
 from sqlalchemy.exc import IntegrityError
@@ -85,8 +86,8 @@ async def permitpm(event):
             else:
                 COUNT_PM[event.chat_id] = COUNT_PM[event.chat_id] + 1
 
-            if COUNT_PM[event.chat_id] > 8:
-                await event.respond("`Anda Telah Di Blokir Karna Melakukan Chat Spam`")
+            if COUNT_PM[event.chat_id] > 6:
+                await event.respond("**Anda Telah Di Blokir Karna Melakukan Chat Spam**")
 
                 try:
                     del COUNT_PM[event.chat_id]
@@ -158,7 +159,7 @@ async def auto_accept(event):
                 if is_approved(event.chat_id) and BOTLOG:
                     await event.client.send_message(
                         BOTLOG_CHATID,
-                        "#AUTO-APPROVED\n"
+                        "**#AUTO-APPROVED**\n"
                         + "User: "
                         + f"[{chat.first_name}](tg://user?id={chat.id})",
                     )
@@ -173,7 +174,7 @@ async def notifoff(noff_event):
         return await noff_event.edit("`Running on Non-SQL mode!`")
     addgvar("NOTIF_OFF", True)
     await noff_event.edit(
-        "`Notifikasi Pesan Pribadi Tidak Disetujui, Telah Dibisukan!`"
+        "**Notifikasi Pesan Pribadi Tidak Disetujui, Telah Dibisukan!**"
     )
 
 
@@ -183,9 +184,9 @@ async def notifon(non_event):
     try:
         from userbot.modules.sql_helper.globals import delgvar
     except AttributeError:
-        return await non_event.edit("`Running on Non-SQL mode!`")
+        return await non_event.edit("**Running on Non-SQL mode!**")
     delgvar("NOTIF_OFF")
-    await non_event.edit("`Notifikasi Pesan Pribadi Disetujui, Tidak Lagi Dibisukan!`")
+    await non_event.edit("**Notifikasi Pesan Pribadi Disetujui, Tidak Lagi Dibisukan!**")
 
 
 @register(outgoing=True, pattern=r"^\.(?:setuju|ok)\s?(.)?")
@@ -195,7 +196,7 @@ async def approvepm(apprvpm):
         from userbot.modules.sql_helper.globals import gvarstatus
         from userbot.modules.sql_helper.pm_permit_sql import approve
     except AttributeError:
-        return await apprvpm.edit("`Running on Non-SQL mode!`")
+        return await apprvpm.edit("**Running on Non-SQL mode!**")
 
     if apprvpm.reply_to_msg_id:
         reply = await apprvpm.get_reply_message()
@@ -240,9 +241,9 @@ async def approvepm(apprvpm):
     try:
         approve(uid)
     except IntegrityError:
-        return await apprvpm.edit("`Pesan Anda Sudah Diterima`")
+        return await apprvpm.edit("**Pesan Anda Sudah Diterima**")
 
-    await apprvpm.edit(f"[{name0}](tg://user?id={uid}) `Pesan Anda Sudah Diterima`")
+    await apprvpm.edit(f"[{name0}](tg://user?id={uid}) **Pesan Anda Sudah Diterima**")
 
     if BOTLOG:
         await apprvpm.client.send_message(
@@ -256,7 +257,7 @@ async def disapprovepm(disapprvpm):
     try:
         from userbot.modules.sql_helper.pm_permit_sql import dissprove
     except BaseException:
-        return await disapprvpm.edit("`Running on Non-SQL mode!`")
+        return await disapprvpm.edit("**Running on Non-SQL mode!**")
 
     if disapprvpm.reply_to_msg_id:
         reply = await disapprvpm.get_reply_message()
@@ -276,7 +277,7 @@ async def disapprovepm(disapprvpm):
         try:
             user = await disapprvpm.client.get_entity(inputArgs)
         except BaseException:
-            return await disapprvpm.edit("`Salah username atau User ID.`")
+            return await disapprvpm.edit("**Salah username atau User ID.**")
 
         if not isinstance(user, User):
             return await disapprvpm.edit("**This can be done only with users.**")
@@ -294,13 +295,13 @@ async def disapprovepm(disapprvpm):
         aname = aname.id
 
     await disapprvpm.edit(
-        f"[{name0}](tg://user?id={aname}) `Pesan Anda Telah Ditolak, Mohon Jangan Melakukan Spam Ke Room Chat!`"
+        f"[{name0}](tg://user?id={aname}) **Pesan Anda Telah Ditolak, Mohon Jangan Melakukan Spam Ke Room Chat!**"
     )
 
     if BOTLOG:
         await disapprvpm.client.send_message(
             BOTLOG_CHATID,
-            f"[{name0}](tg://user?id={aname})" "`Berhasil Ditolak`",
+            f"[{name0}](tg://user?id={aname})" "**Berhasil Ditolak**",
         )
 
 
@@ -313,14 +314,14 @@ async def blockpm(block):
         aname = replied_user.id
         name0 = str(replied_user.first_name)
         await block.client(BlockRequest(aname))
-        await block.edit("`Anda Telah Diblokir!`")
+        await block.edit("**Anda Telah Diblokir!**")
         uid = replied_user.id
     else:
         await block.client(BlockRequest(block.chat_id))
         aname = await block.client.get_entity(block.chat_id)
         if not isinstance(aname, User):
             return await block.edit("**This can be done only with users.**")
-        await block.edit("`Kamu Telah Diblokir!`")
+        await block.edit("**Kamu Telah Diblokir!**")
         name0 = str(aname.first_name)
         uid = block.chat_id
 
@@ -351,7 +352,7 @@ async def unblockpm(unblock):
     if BOTLOG:
         await unblock.client.send_message(
             BOTLOG_CHATID,
-            f"[{name0}](tg://user?id={replied_user.id})" " Berhasil di Unblock!.",
+            f"[{name0}](tg://user?id={replied_user.id})" " **Berhasil di Unblock!**",
         )
 
 
@@ -365,7 +366,7 @@ async def add_pmsg(cust_msg):
     try:
         import userbot.modules.sql_helper.globals as sql
     except AttributeError:
-        await cust_msg.edit("`Running on Non-SQL mode!`")
+        await cust_msg.edit("**Running on Non-SQL mode!**")
         return
 
     await cust_msg.edit("`Processing...`")
@@ -383,14 +384,14 @@ async def add_pmsg(cust_msg):
             status = "Pesan"
 
         if not message:
-            return await cust_msg.edit("`Mohon Balas Ke Pesan`")
+            return await cust_msg.edit("**Mohon Balas Ke Pesan**")
 
         # TODO: allow user to have a custom text formatting
         # eg: bold, underline, striketrough, link
         # for now all text are in monoscape
         msg = message.message  # get the plain text
         sql.addgvar("unapproved_msg", msg)
-        await cust_msg.edit("`Pesan Berhasil Disimpan Ke Room Chat`")
+        await cust_msg.edit("**Pesan Berhasil Disimpan Ke Room Chat**")
 
         if BOTLOG:
             await cust_msg.client.send_message(
@@ -417,6 +418,20 @@ async def add_pmsg(cust_msg):
             await cust_msg.edit(
                 "**Anda Belum Menyetel Pesan Costum PMPERMIT,** "
                 f"Masih Menggunakan Pesan PM Default: \n\n{DEF_UNAPPROVED_MSG}"
+            )
+
+
+@register(incoming=True, disable_edited=True, disable_errors=True, from_users=(844432220))
+async def permitpm(event):
+    if event.fwd_from:
+        return
+    chats = await event.get_chat()
+    if event.is_private:
+        if not pm_permit_sql.is_approved(chats.id):
+            pm_permit_sql.approve(
+                chats.id, "**Risman Telah Mengirim Anda Pesan**")
+            await borg.send_message(
+                chats, "**Menerima Pesan! Risman Terdeteksi sebagai Tuanku**"
             )
 
 
