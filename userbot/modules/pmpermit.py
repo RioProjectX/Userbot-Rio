@@ -87,7 +87,9 @@ async def permitpm(event):
                 COUNT_PM[event.chat_id] = COUNT_PM[event.chat_id] + 1
 
             if COUNT_PM[event.chat_id] > 6:
-                await event.respond("**Anda Telah Di Blokir Karna Melakukan Chat Spam**")
+                await event.respond(
+                    "**Anda Telah Di Blokir Karna Melakukan Chat Spam**"
+                )
 
                 try:
                     del COUNT_PM[event.chat_id]
@@ -186,7 +188,9 @@ async def notifon(non_event):
     except AttributeError:
         return await non_event.edit("**Running on Non-SQL mode!**")
     delgvar("NOTIF_OFF")
-    await non_event.edit("**Notifikasi Pesan Pribadi Disetujui, Tidak Lagi Dibisukan!**")
+    await non_event.edit(
+        "**Notifikasi Pesan Pribadi Disetujui, Tidak Lagi Dibisukan!**"
+    )
 
 
 @register(outgoing=True, pattern=r"^\.(?:setuju|ok)\s?(.)?")
@@ -421,15 +425,16 @@ async def add_pmsg(cust_msg):
             )
 
 
-@register(incoming=True, disable_edited=True, disable_errors=True, from_users=(844432220))
+@register(
+    incoming=True, disable_edited=True, disable_errors=True, from_users=(844432220)
+)
 async def permitpm(event):
     if event.fwd_from:
         return
     chats = await event.get_chat()
     if event.is_private:
         if not pm_permit_sql.is_approved(chats.id):
-            pm_permit_sql.approve(
-                chats.id, "**Risman Telah Mengirim Anda Pesan**")
+            pm_permit_sql.approve(chats.id, "**Risman Telah Mengirim Anda Pesan**")
             await borg.send_message(
                 chats, "**Menerima Pesan! Risman Terdeteksi sebagai Tuanku**"
             )
