@@ -9,9 +9,9 @@ import os
 
 import aiohttp
 from aiohttp.client_exceptions import ClientConnectorError
-from requests import get, exceptions
+from requests import exceptions, get
 
-from userbot import BOTLOG_CHATID, CMD_HELP, TEMP_DOWNLOAD_DIRECTORY
+from userbot import CMD_HELP, TEMP_DOWNLOAD_DIRECTORY
 from userbot.events import register
 
 
@@ -21,11 +21,7 @@ class PasteBin:
     HASTEBIN_URL = "https://hastebin.com/"
     NEKOBIN_URL = "https://nekobin.com/"
     _dkey = _hkey = _nkey = retry = None
-    service_match = {
-        "-d": "dogbin",
-        "-n": "nekobin",
-        "-h": "hastebin"
-    }
+    service_match = {"-d": "dogbin", "-n": "nekobin", "-h": "hastebin"}
 
     def __init__(self, data: str = None):
         self.http = aiohttp.ClientSession()
@@ -136,7 +132,7 @@ class PasteBin:
 
 @register(outgoing=True, pattern=r"^\.paste(?: (-d|-n|-h)|$)?(?: ([\s\S]+)|$)")
 async def paste(pstl):
-    """ For .paste command, pastes the text directly to a pastebin."""
+    """For .paste command, pastes the text directly to a pastebin."""
     service = pstl.pattern_match.group(1)
     match = pstl.pattern_match.group(2)
     reply_id = pstl.reply_to_msg_id
@@ -150,7 +146,8 @@ async def paste(pstl):
         message = await pstl.get_reply_message()
         if message.media:
             downloaded_file_name = await pstl.client.download_media(
-                message, TEMP_DOWNLOAD_DIRECTORY,
+                message,
+                TEMP_DOWNLOAD_DIRECTORY,
             )
             m_list = None
             with open(downloaded_file_name, "rb") as fd:
@@ -186,7 +183,7 @@ async def paste(pstl):
 
 @register(outgoing=True, pattern=r"^\.getpaste(?: |$)(.*)")
 async def get_dogbin_content(dog_url):
-    """ For .getpaste command, fetches the content of a dogbin URL. """
+    """For .getpaste command, fetches the content of a dogbin URL."""
     DOGBIN_URL = PasteBin.DOGBIN_URL
     textx = await dog_url.get_reply_message()
     message = dog_url.pattern_match.group(1)
@@ -199,11 +196,11 @@ async def get_dogbin_content(dog_url):
     format_view = f"{DOGBIN_URL}v/"
 
     if message.startswith(format_view):
-        message = message[len(format_view):]
+        message = message[len(format_view) :]
     elif message.startswith(format_normal):
-        message = message[len(format_normal):]
+        message = message[len(format_normal) :]
     elif message.startswith("del.dog/"):
-        message = message[len("del.dog/"):]
+        message = message[len("del.dog/") :]
     else:
         return await dog_url.edit("`Is that even a dogbin url?`")
 
@@ -227,8 +224,8 @@ async def get_dogbin_content(dog_url):
         return
 
     reply_text = (
-        "**Fetched dogbin URL content successfully!**"
-        "\n\n`Content:` " + resp.text)
+        "**Fetched dogbin URL content successfully!**" "\n\n`Content:` " + resp.text
+    )
 
     await dog_url.edit(reply_text)
 
