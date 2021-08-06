@@ -36,7 +36,7 @@ from googletrans import LANGUAGES, Translator
 from gtts import gTTS
 from gtts.lang import tts_langs
 from humanize import naturalsize
-from requests import exceptions, get, post
+from requests import get
 from search_engine_parser import YahooSearch as GoogleSearch
 from telethon.tl.types import DocumentAttributeAudio, MessageMediaPhoto
 from wikipedia import summary
