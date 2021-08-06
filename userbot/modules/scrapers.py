@@ -27,6 +27,7 @@ from urllib.parse import quote_plus
 
 import asyncurban
 import barcode
+import emoji
 import qrcode
 import requests
 from barcode.writer import ImageWriter
@@ -101,10 +102,6 @@ async def ocr_space_file(
             data=payload,
         )
     return r.json()
-
-
-DOGBIN_URL = "https://del.dog/"
-NEKOBIN_URL = "https://nekobin.com/"
 
 
 @register(outgoing=True, pattern=r"^\.crblang (.*)")
@@ -634,7 +631,7 @@ def deEmojify(inputString):
     return get_emoji_regexp().sub("", inputString)
 
 
-@register(outgoing=True, pattern="^.rbg(?: |$)(.*)")
+@register(outgoing=True, pattern=r"^\.rbg(?: |$)(.*)")
 async def kbg(remob):
     """For .rbg command, Remove Image Background."""
     if REM_BG_API_KEY is None:
@@ -723,7 +720,7 @@ async def ReTrieveURL(input_url):
     )
 
 
-@register(pattern=r".ocr (.*)", outgoing=True)
+@register(pattern=r"^\.ocr (.*)", outgoing=True)
 async def ocr(event):
     if not OCR_SPACE_API_KEY:
         return await event.edit(
@@ -748,7 +745,7 @@ async def ocr(event):
     os.remove(downloaded_file_name)
 
 
-@register(pattern=r"^.decode$", outgoing=True)
+@register(pattern=r"^\.decode$", outgoing=True)
 async def parseqr(qr_e):
     """For .decode command, get QR Code/BarCode content from the replied photo."""
     downloaded_file_name = await qr_e.client.download_media(
@@ -783,7 +780,7 @@ async def parseqr(qr_e):
     await qr_e.edit(qr_contents)
 
 
-@register(pattern=r".barcode(?: |$)([\s\S]*)", outgoing=True)
+@register(pattern=r"^\.barcode(?: |$)([\s\S]*)", outgoing=True)
 async def bq(event):
     """For .barcode command, genrate a barcode containing the given content."""
     await event.edit("`Processing..`")
@@ -818,7 +815,7 @@ async def bq(event):
     await event.delete()
 
 
-@register(pattern=r".makeqr(?: |$)([\s\S]*)", outgoing=True)
+@register(pattern=r"^\.makeqr(?: |$)([\s\S]*)", outgoing=True)
 async def make_qr(makeqr):
     """For .makeqr command, make a QR Code containing the given content."""
     input_str = makeqr.pattern_match.group(1)
@@ -856,7 +853,7 @@ async def make_qr(makeqr):
     await makeqr.delete()
 
 
-@register(outgoing=True, pattern=r"^.direct(?: |$)([\s\S]*)")
+@register(outgoing=True, pattern=r"^\.direct(?: |$)([\s\S]*)")
 async def direct_link_generator(request):
     """direct links generator"""
     await request.edit("`Processing...`")
