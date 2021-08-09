@@ -36,12 +36,16 @@ from emoji import get_emoji_regexp
 from googletrans import LANGUAGES, Translator
 from gtts import gTTS
 from gtts.lang import tts_langs
-from humanize import naturalsize
 from hachoir.metadata import extractMetadata
 from hachoir.parser import createParser
+from humanize import naturalsize
 from requests import get
 from search_engine_parser import GoogleSearch
-from telethon.tl.types import DocumentAttributeAudio, DocumentAttributeVideo, MessageMediaPhoto
+from telethon.tl.types import (
+    DocumentAttributeAudio,
+    DocumentAttributeVideo,
+    MessageMediaPhoto,
+)
 from wikipedia import summary
 from wikipedia.exceptions import DisambiguationError, PageError
 from youtube_dl import YoutubeDL
@@ -56,8 +60,6 @@ from youtube_dl.utils import (
     XAttrMetadataError,
 )
 from youtube_search import YoutubeSearch
-from userbot.modules.upload_download import get_video_thumb
-from userbot.utils.FastTelethon import upload_file
 
 from userbot import (
     BOTLOG,
@@ -70,7 +72,9 @@ from userbot import (
     bot,
 )
 from userbot.events import register
+from userbot.modules.upload_download import get_video_thumb
 from userbot.utils import chrome, googleimagesdownload, options, progress
+from userbot.utils.FastTelethon import upload_file
 
 CARBONLANG = "auto"
 TTS_LANG = "id"
