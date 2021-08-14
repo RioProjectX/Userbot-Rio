@@ -6,35 +6,35 @@ from userbot.events import register
 
 @register(pattern=r"^\.asupan$", outgoing=True)
 async def _(event):
-    xx = await event.edit("`Processing...`")
-    response = requests.get("https://tede-api.herokuapp.com/api/asupan/ptl").json()
-    if not response:
-        await xx.edit("**Tidak bisa menemukan video asupan.**")
-        return
-    await event.client.send_file(event.chat_id, response['url'])
-    await xx.delete()
+    lol = await event.edit("`Processing...`")
+    try:
+        response = requests.get("https://tede-api.herokuapp.com/api/asupan/ptl").json()
+        return await event.client.send_file(event.chat_id, response['url'])
+        await lol.delete()
+    except Exception:
+        await lol.edit("**Tidak bisa menemukan video asupan.**")
 
 
 @register(pattern=r"^\.wibu$", outgoing=True)
 async def _(event):
-    xx = await event.edit("`Processing...`")
-    response = requests.get("https://tede-api.herokuapp.com/api/asupan/wibu").json()
-    if not response.url:
-        await xx.edit("**Tidak bisa menemukan video wibu.**")
-        return
-    await event.client.send_file(event.chat_id, response['url'])
-    await xx.delete()
+    lol = await event.edit("`Processing...`")
+    try:
+        response = requests.get("https://tede-api.herokuapp.com/api/asupan/wibu").json()
+        return await event.client.send_file(event.chat_id, response['url'])
+        await lol.delete()
+    except Exception:
+        await lol.edit("**Tidak bisa menemukan video wibu.**")
 
 
 @register(pattern=r"^\.chika$", outgoing=True)
 async def _(event):
-    xx = await event.edit("`Processing...`")
-    response = requests.get("https://tede-api.herokuapp.com/api/chika").json()
-    if not response:
-        await xx.edit("**Tidak bisa menemukan video chikakiku.**")
-        return
-    await event.client.send_file(event.chat_id, response['url'])
-    await xx.delete()
+    lol = await event.edit("`Processing...`")
+    try:
+        response = requests.get("https://tede-api.herokuapp.com/api/chika").json()
+        return await event.client.send_file(event.chat_id, response['url'])
+        await lol.delete()
+    except Exception:
+        await lol.edit("**Tidak bisa menemukan video chikakiku.**")
 
 
 CMD_HELP.update(
