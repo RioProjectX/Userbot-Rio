@@ -7,30 +7,30 @@ from userbot.events import register
 
 
 @register(outgoing=True, pattern=r"^\.asupan$")
-async def asupan(event):
+async def _(event):
     try:
         response = requests.get("https://tede-api.herokuapp.com/api/asupan/ptl").json()
-        return await event.client.send_file(event.chat_id, response['url'])
+        await event.client.send_file(event.chat_id, response['url'])
         await event.delete()
     except Exception:
         await event.edit("**Tidak bisa menemukan video asupan.**")
 
 
 @register(outgoing=True, pattern=r"^\.wibu$")
-async def wibu(event):
+async def _(event):
     try:
         response = requests.get("https://tede-api.herokuapp.com/api/asupan/wibu").json()
-        return await event.client.send_file(event.chat_id, response['url'])
+        await event.client.send_file(event.chat_id, response['url'])
         await event.delete()
     except Exception:
         await event.edit("**Tidak bisa menemukan video wibu.**")
 
 
 @register(outgoing=True, pattern=r"^\.chika$")
-async def chika(event):
+async def _(event):
     try:
         response = requests.get("https://tede-api.herokuapp.com/api/chika").json()
-        return await event.client.send_file(event.chat_id, response['url'])
+        await event.client.send_file(event.chat_id, response['url'])
         await event.delete()
     except Exception:
         await event.edit("**Tidak bisa menemukan video chikakiku.**")
