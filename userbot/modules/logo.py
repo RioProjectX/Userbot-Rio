@@ -21,17 +21,18 @@ async def _(event):
         try:
             msg = await conv.send_message(f"/logo {text}")
             response = await conv.get_response()
+            logo = await conv.get_response()
             """ - don't spam notif - """
             await bot.send_read_acknowledge(conv.chat_id)
         except YouBlockedUserError:
-            await p.edit(
+            await event.edit(
                 "**Error: Mohon Buka Blokir** @tdtapibot **Dan Coba Lagi!**"
             )
             return
         await asyncio.sleep(0.5)
-        await bot.send_file(event.chat_id, response)
+        await bot.send_message(event.chat_id, logo)
         await event.client.delete_messages(
-            conv.chat_id, [msg.id, response.id]
+            conv.chat_id, [msg.id, response.id, logo.id]
         )
         await event.delete()
 
