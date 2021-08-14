@@ -1,40 +1,36 @@
-import requests
+# 🍀 © @tofik_dn
+# ⚠️ Do not remove credits
 
+import requests
 from userbot import CMD_HELP
 from userbot.events import register
 
 
-@register(pattern=r"^\.asupan$", outgoing=True)
+@register(outgoing=True, pattern=r"^\.asupan$")
 async def _(event):
-    lol = await event.edit("`Processing...`")
     try:
         response = requests.get("https://tede-api.herokuapp.com/api/asupan/ptl").json()
         return await event.client.send_file(event.chat_id, response['url'])
-        await lol.delete()
     except Exception:
-        await lol.edit("**Tidak bisa menemukan video asupan.**")
+        await event.edit("**Tidak bisa menemukan video asupan.**")
 
 
-@register(pattern=r"^\.wibu$", outgoing=True)
+@register(outgoing=True, pattern=r"^\.wibu$")
 async def _(event):
-    lol = await event.edit("`Processing...`")
     try:
         response = requests.get("https://tede-api.herokuapp.com/api/asupan/wibu").json()
         return await event.client.send_file(event.chat_id, response['url'])
-        await lol.delete()
     except Exception:
-        await lol.edit("**Tidak bisa menemukan video wibu.**")
+        await event.edit("**Tidak bisa menemukan video wibu.**")
 
 
-@register(pattern=r"^\.chika$", outgoing=True)
+@register(outgoing=True, pattern=r"^\.chika$")
 async def _(event):
-    lol = await event.edit("`Processing...`")
     try:
         response = requests.get("https://tede-api.herokuapp.com/api/chika").json()
         return await event.client.send_file(event.chat_id, response['url'])
-        await lol.delete()
     except Exception:
-        await lol.edit("**Tidak bisa menemukan video chikakiku.**")
+        await event.edit("**Tidak bisa menemukan video chikakiku.**")
 
 
 CMD_HELP.update(
