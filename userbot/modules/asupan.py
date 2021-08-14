@@ -11,6 +11,7 @@ async def _(event):
     try:
         response = requests.get("https://tede-api.herokuapp.com/api/asupan/ptl").json()
         return await event.client.send_file(event.chat_id, response['url'])
+        await event.delete()
     except Exception:
         await event.edit("**Tidak bisa menemukan video asupan.**")
 
@@ -20,6 +21,7 @@ async def _(event):
     try:
         response = requests.get("https://tede-api.herokuapp.com/api/asupan/wibu").json()
         return await event.client.send_file(event.chat_id, response['url'])
+        await event.delete()
     except Exception:
         await event.edit("**Tidak bisa menemukan video wibu.**")
 
@@ -29,6 +31,7 @@ async def _(event):
     try:
         response = requests.get("https://tede-api.herokuapp.com/api/chika").json()
         return await event.client.send_file(event.chat_id, response['url'])
+        await event.delete()
     except Exception:
         await event.edit("**Tidak bisa menemukan video chikakiku.**")
 
