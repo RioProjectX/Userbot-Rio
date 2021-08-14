@@ -6,35 +6,35 @@ from userbot.events import register
 
 @register(pattern=r"^\.asupan$", outgoing=True)
 async def _(event):
-    await event.edit("`Processing...`")
+    xx = await event.edit("`Processing...`")
     response = requests.get("https://tede-api.herokuapp.com/api/asupan/ptl").json()
     if not response:
-        await event.edit("**Tidak bisa menemukan video asupan.**")
+        await xx.edit("**Tidak bisa menemukan video asupan.**")
         return
     await event.client.send_file(event.chat_id, response['url'])
-    await event.delete()
+    await xx.delete()
 
 
 @register(pattern=r"^\.wibu$", outgoing=True)
 async def _(event):
-    await event.edit("`Processing...`")
+    xx = await event.edit("`Processing...`")
     response = requests.get("https://tede-api.herokuapp.com/api/asupan/wibu").json()
-    if not response:
-        await event.edit("**Tidak bisa menemukan video wibu.**")
+    if not response.url:
+        await xx.edit("**Tidak bisa menemukan video wibu.**")
         return
     await event.client.send_file(event.chat_id, response['url'])
-    await event.delete()
+    await xx.delete()
 
 
 @register(pattern=r"^\.chika$", outgoing=True)
 async def _(event):
-    await event.edit("`Processing...`")
+    xx = await event.edit("`Processing...`")
     response = requests.get("https://tede-api.herokuapp.com/api/chika").json()
     if not response:
-        await event.edit("**Tidak bisa menemukan video chikakiku.**")
+        await xx.edit("**Tidak bisa menemukan video chikakiku.**")
         return
     await event.client.send_file(event.chat_id, response['url'])
-    await event.delete()
+    await xx.delete()
 
 
 CMD_HELP.update(
