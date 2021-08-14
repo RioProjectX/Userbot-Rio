@@ -100,6 +100,4 @@ TEMP_DOWNLOAD_DIRECTORY = no need to change this value
 # Genius lyrics get this value from https://genius.com/developers both has same values
 GENIUS_API_TOKEN = 
 # Genius lyrics get this value from https://genius.com/developers both has same values
-GENIUS = 
-
-
+GENIUS =
