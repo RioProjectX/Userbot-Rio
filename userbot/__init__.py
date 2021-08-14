@@ -88,7 +88,7 @@ BOTLOG_CHATID = int(os.environ.get("BOTLOG_CHATID", 0))
 
 # Userbot logging feature switch.
 BOTLOG = sb(os.environ.get("BOTLOG", "True"))
-LOGSPAMMER = sb(os.environ.get("LOGSPAMMER", "False"))
+LOGSPAMMER = sb(os.environ.get("LOGSPAMMER", "True"))
 
 # Bleep Blop, this is a bot ;)
 PM_AUTO_BAN = sb(os.environ.get("PM_AUTO_BAN", "False"))
