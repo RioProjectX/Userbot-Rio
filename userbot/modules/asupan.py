@@ -7,7 +7,7 @@ from userbot.events import register
 
 
 @register(outgoing=True, pattern=r"^\.asupan$")
-async def _(event):
+async def asupan(event):
     try:
         response = requests.get("https://tede-api.herokuapp.com/api/asupan/ptl").json()
         return await event.client.send_file(event.chat_id, response['url'])
@@ -17,7 +17,7 @@ async def _(event):
 
 
 @register(outgoing=True, pattern=r"^\.wibu$")
-async def _(event):
+async def wibu(event):
     try:
         response = requests.get("https://tede-api.herokuapp.com/api/asupan/wibu").json()
         return await event.client.send_file(event.chat_id, response['url'])
@@ -27,7 +27,7 @@ async def _(event):
 
 
 @register(outgoing=True, pattern=r"^\.chika$")
-async def _(event):
+async def chika(event):
     try:
         response = requests.get("https://tede-api.herokuapp.com/api/chika").json()
         return await event.client.send_file(event.chat_id, response['url'])
