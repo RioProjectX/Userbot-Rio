@@ -55,7 +55,7 @@ async def evaluate(event):
     if evaluation and evaluation != "":
         evaluation = evaluation.encode("unicode-escape").decode().replace("\\\\", "\\")
     else:
-        evaluation = "None"
+        evaluation = "Success"
 
     if len(str(evaluation)) >= 4096:
         with open("output.txt", "w+") as file:
@@ -104,7 +104,7 @@ async def run(event):
         stdout = str(stdout.decode().strip())
         stdout.encode("unicode-escape").decode().replace("\\\\", "\\")
     else:
-        stdout = "None"
+        stdout = "Success"
 
     if len(stdout) > 4096:
         with open("output.txt", "w+") as file:
@@ -141,7 +141,7 @@ async def terminal_runner(event):
         result = str(stdout.decode().strip())
         result.encode("unicode-escape").decode().replace("\\\\", "\\")
     else:
-        result = "None"
+        result = "Success"
 
     if len(result) > 4096:
         with open("output.txt", "w+") as output:
