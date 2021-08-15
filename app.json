@@ -26,7 +26,6 @@
     },
     "HEROKU_API_KEY": {
       "description": "Ambil Heroku API KEY mu disini » https://dashboard.heroku.com/account",
-      "value": "Check Di Heroku Dashboard Mu",
       "required": true
     },
     "BOTLOG_CHATID": {
