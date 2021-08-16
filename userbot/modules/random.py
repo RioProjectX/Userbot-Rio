@@ -42,7 +42,7 @@ lol = {
 async def _(event):
     if event.fwd_from:
         return
-    text = event.text
+    text = event.pattern_match.group(1)
     chat = "@tdtapibot"
     async with event.client.conversation(chat) as conv:
         try:
