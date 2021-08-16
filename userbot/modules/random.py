@@ -42,15 +42,15 @@ lol = {
 async def _(event):
     if event.fwd_from:
         return
-    text = event.pattern_match.group(1)
+    text = event.text
     chat = "@tdtapibot"
     async with event.client.conversation(chat) as conv:
         try:
-            msg = await conv.send_message(f"{text}")
+            msg = await conv.send_message(f"/{text}")
             response = await conv.get_response()
             poto = await conv.get_response()
             """ - don't spam notif - """
-            await event.client.send_read_acknowledge(conv.chat_id)
+            #await event.client.send_read_acknowledge(conv.chat_id)
         except YouBlockedUserError:
             await event.edit(
                 "**Error: Mohon Buka Blokir** @tdtapibot **Dan Coba Lagi!**"
