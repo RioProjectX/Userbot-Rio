@@ -13,7 +13,7 @@ from userbot.events import register
 async def _(event):
     if event.fwd_from:
         return
-    text = event.pattern_match.group(2)
+    text = event.pattern_match.group(1)
     chat = "@tdtapibot"
     async with event.client.conversation(chat) as conv:
         try:
