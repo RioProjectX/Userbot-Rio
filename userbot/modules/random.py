@@ -34,15 +34,12 @@ lol = {
     },
 }
 
-commands = []
-for x in lol:
-    commands.append(x)
-    if "alts" in lol[x]:
-        for y in lol[x]["alts"]:
-            commands.append(y)
 
-
-@register(outgoing=True, pattern=r"^\.commands(?: |$)(.*)")
+@register(
+    outgoing=True,
+    pattern=r"^\.(neko|feet|yuri|trap|futanari|hololewd|lewdkemo)?(.*)",
+    disable_errors=True,
+)
 async def _(event):
     if event.fwd_from:
         return
