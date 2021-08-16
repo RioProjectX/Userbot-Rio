@@ -7,34 +7,6 @@ from userbot import CMD_HELP, ALIVE_NAME
 from userbot.events import register
 
 
-lol = {
-    "neko": {
-        "cmd": "/neko",
-        "help": "idk test aja",
-    },
-    "feet": {
-        "cmd": "/feet",
-        "help": "idk test aja",
-    },
-    "yuri": {
-        "cmd": "/yuri",
-        "help": "idk test aja",
-    },
-    "trap": {
-        "cmd": "/trap",
-        "help": "idk test aja",
-    },
-    "futanari": {
-        "cmd": "/futanari",
-        "help": "idk test aja",
-    },
-    "hololewd": {
-        "cmd": "/hololewd",
-        "help": "idk test aja",
-    },
-}
-
-
 @register(
     outgoing=True,
     pattern=r"^\.(neko|feet|yuri|trap|futanari|hololewd|lewdkemo)?(.*)"
@@ -46,7 +18,7 @@ async def _(event):
     chat = "@tdtapibot"
     async with event.client.conversation(chat) as conv:
         try:
-            msg = await conv.send_message(f"/{text}")
+            msg = await conv.send_message(f"{text}")
             response = await conv.get_response()
             poto = await conv.get_response()
             """ - don't spam notif - """
