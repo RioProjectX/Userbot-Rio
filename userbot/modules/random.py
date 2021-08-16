@@ -37,8 +37,7 @@ lol = {
 
 @register(
     outgoing=True,
-    pattern=r"^\.(neko|feet|yuri|trap|futanari|hololewd|lewdkemo)?(.*)",
-    disable_errors=True,
+    pattern=r"^\.(neko|feet|yuri|trap|futanari|hololewd|lewdkemo)?(.*)"
 )
 async def _(event):
     if event.fwd_from:
