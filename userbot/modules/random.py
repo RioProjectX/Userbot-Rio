@@ -1,7 +1,6 @@
 # 🍀 © @tofik_dn
 # ⚠️ Do not remove credits
 
-import asyncio
 from telethon.errors.rpcerrorlist import YouBlockedUserError
 from userbot import CMD_HELP
 from userbot.events import register
@@ -9,7 +8,7 @@ from userbot.events import register
 
 @register(
     outgoing=True,
-    pattern=r"^\.r(neko|feet|yuri|trap|futanari|hololewd|lewdkemo)(?: |$)(.*)"
+    pattern=r"^\.r(neko|feet|yuri|trap|futanari|hololewd|lewdkemo)?(.*)"
 )
 async def _(event):
     if event.fwd_from:
