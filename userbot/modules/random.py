@@ -62,7 +62,7 @@ async def _(event):
         )
         #await event.client.delete_messages(
             #conv.chat_id, [msg.id, response.id, logo.id]
-        ")
+        #")
         await event.delete()
 
 
