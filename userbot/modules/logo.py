@@ -11,6 +11,7 @@ from userbot.events import register
 async def _(event):
     if event.fwd_from:
         return
+    aing = await event.client.get_me()
     text = event.pattern_match.group(1)
     if not text:
         await event.edit("`Give a name too!`")
@@ -33,7 +34,7 @@ async def _(event):
         await event.client.send_file(
             event.chat_id,
             logo,
-            caption=f"Logo by {ALIVE_NAME}"
+            caption=f"Logo by [{ALIVE_NAME}](tg://user?id={aing.id})"
         )
         await event.client.delete_messages(
             conv.chat_id, [msg.id, response.id, logo.id]
