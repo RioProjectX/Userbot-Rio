@@ -9,7 +9,7 @@ from userbot.events import register
 
 @register(
     outgoing=True,
-    pattern=r"^\.(neko|feet|yuri|trap|futanari|hololewd|lewdkemo)(?: |$)(.*)"
+    pattern=r"^\.r(neko|feet|yuri|trap|futanari|hololewd|lewdkemo)(?: |$)(.*)"
 )
 async def _(event):
     if event.fwd_from:
@@ -18,7 +18,7 @@ async def _(event):
     chat = "@tdtapibot"
     async with event.client.conversation(chat) as conv:
         try:
-            msg = await conv.send_message(f"{text}")
+            msg = await conv.send_message(f"/{text}")
             response = await conv.get_response()
             poto = await conv.get_response()
             """ - don't spam notif - """
