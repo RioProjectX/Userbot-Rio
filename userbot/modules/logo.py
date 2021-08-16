@@ -33,7 +33,7 @@ async def _(event):
         await event.client.send_file(
             event.chat_id,
             logo,
-            caption=f"Logo by [{ALIVE_NAME}](tg://user?id={uid})"
+            caption=f"Logo by {ALIVE_NAME}"
         )
         await event.client.delete_messages(
             conv.chat_id, [msg.id, response.id, logo.id]
