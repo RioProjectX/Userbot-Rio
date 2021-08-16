@@ -3,7 +3,7 @@
 
 import asyncio
 from telethon.errors.rpcerrorlist import YouBlockedUserError
-from userbot import CMD_HELP, ALIVE_NAME, uid
+from userbot import CMD_HELP, ALIVE_NAME
 from userbot.events import register
 
 
