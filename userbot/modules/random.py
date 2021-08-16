@@ -37,12 +37,12 @@ lol = {
 
 @register(
     outgoing=True,
-    pattern=r"^\.r(neko|feet|yuri|trap|futanari|hololewd|lewdkemo)?(.*)"
+    pattern=r"^\.(neko|feet|yuri|trap|futanari|hololewd|lewdkemo)?(.*)"
 )
 async def _(event):
     if event.fwd_from:
         return
-    text = event.pattern_match.group(1)
+    text = event.text
     chat = "@tdtapibot"
     async with event.client.conversation(chat) as conv:
         try:
