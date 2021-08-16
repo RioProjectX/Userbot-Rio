@@ -8,12 +8,12 @@ from userbot.events import register
 
 @register(
     outgoing=True,
-    pattern=r"^\.r(neko|feet|yuri|trap|futanari|hololewd|lewdkemo)?(.*)"
+    pattern=r"^\.r(neko|feet|yuri|trap|futanari|hololewd|lewdkemo)?(.*)",
 )
 async def _(event):
     if event.fwd_from:
         return
-    text = event.pattern_match.group(1)
+    text = event.pattern_match.group(2)
     chat = "@tdtapibot"
     async with event.client.conversation(chat) as conv:
         try:
