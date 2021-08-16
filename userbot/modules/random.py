@@ -37,7 +37,7 @@ lol = {
 
 @register(
     outgoing=True,
-    pattern=r"^\.random(neko|feet|yuri|trap|futanari|hololewd|lewdkemo)?(.*)"
+    pattern=r"^\.r(neko|feet|yuri|trap|futanari|hololewd|lewdkemo)?(.*)"
 )
 async def _(event):
     if event.fwd_from:
@@ -70,8 +70,8 @@ async def _(event):
 
 CMD_HELP.update(
     {
-        "random": "**Plugin : **`random`\
-        \n\n  •  **Syntax :** `.neko`\
+        "nsfw": "**Plugin : **`nsfw`\
+        \n\n  •  **Syntax :** `.r neko`\
         \n  •  **Function : **idk\
     "
     }
