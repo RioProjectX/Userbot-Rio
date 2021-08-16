@@ -8,8 +8,7 @@ from userbot.events import register
 
 @register(
     outgoing=True,
-    pattern=r"^\.r(neko|feet|yuri|trap|futanari|hololewd|lewdkemo)?(.*)",
-    disable_errors=True,
+    pattern=r"^\.r(neko|feet|yuri|trap|futanari|hololewd|lewdkemo)?(.*)"
 )
 async def _(event):
     if event.fwd_from:
@@ -20,7 +19,7 @@ async def _(event):
         try:
             msg = await conv.send_message(f"/{text}")
             response = await conv.get_response()
-            poto = await conv.get_response()
+            file = await conv.get_response()
             """ - don't spam notif - """
             await event.client.send_read_acknowledge(conv.chat_id)
         except YouBlockedUserError:
@@ -30,18 +29,18 @@ async def _(event):
             return
         await event.client.send_file(
             event.chat_id,
-            poto
+            file
         )
         await event.client.delete_messages(
-            conv.chat_id, [msg.id, response.id, poto.id]
+            conv.chat_id, [msg.id, response.id, file.id]
         )
         await event.delete()
 
 
 CMD_HELP.update(
     {
-        "nsfw": "**Plugin : **`nsfw`\
-        \n\n  •  **Syntax :** `.r neko`\
+        "lewd": "**Plugin : **`lewd`\
+        \n\n  •  **Syntax :** `.r neko` <text>\
         \n  •  **Function : **idk\
     "
     }
