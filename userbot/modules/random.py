@@ -37,12 +37,12 @@ lol = {
 
 @register(
     outgoing=True,
-    pattern=r"^\.(neko|feet|yuri|trap|futanari|hololewd|lewdkemo)?(.*)"
+    pattern=r"^\.random(neko|feet|yuri|trap|futanari|hololewd|lewdkemo)?(.*)"
 )
 async def _(event):
     if event.fwd_from:
         return
-    text = event.pattern_match.group(0)
+    text = event.pattern_match.group(1)
     oke = text[0]
     mmk = lol[oke]
     chat = "@tdtapibot"
