@@ -8,7 +8,7 @@ from userbot.events import register
 
 @register(
     outgoing=True,
-    pattern=r"^\.r(neko|feet|yuri|trap|futanari|hololewd|lewdkemo)?(.*)"
+    pattern=r"^\.r(neko|feet|yuri|trap|futanari|hololewd|lewdkemo)(?: |$)(.*)"
 )
 async def _(event):
     if event.fwd_from:
