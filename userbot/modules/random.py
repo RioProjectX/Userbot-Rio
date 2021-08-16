@@ -3,18 +3,18 @@
 
 import asyncio
 from telethon.errors.rpcerrorlist import YouBlockedUserError
-from userbot import CMD_HELP, ALIVE_NAME
+from userbot import CMD_HELP
 from userbot.events import register
 
 
 @register(
     outgoing=True,
-    pattern=r"^\.(neko|feet|yuri|trap|futanari|hololewd|lewdkemo)?(.*)"
+    pattern=r"^\.(neko|feet|yuri|trap|futanari|hololewd|lewdkemo)(?: |$)(.*)"
 )
 async def _(event):
     if event.fwd_from:
         return
-    text = event.text
+    text = event.pattern_match.group(1)
     chat = "@tdtapibot"
     async with event.client.conversation(chat) as conv:
         try:
@@ -22,7 +22,7 @@ async def _(event):
             response = await conv.get_response()
             poto = await conv.get_response()
             """ - don't spam notif - """
-            #await event.client.send_read_acknowledge(conv.chat_id)
+            await event.client.send_read_acknowledge(conv.chat_id)
         except YouBlockedUserError:
             await event.edit(
                 "**Error: Mohon Buka Blokir** @tdtapibot **Dan Coba Lagi!**"
@@ -32,9 +32,9 @@ async def _(event):
             event.chat_id,
             poto
         )
-        #await event.client.delete_messages(
-            #conv.chat_id, [msg.id, response.id, logo.id]
-        #")
+        await event.client.delete_messages(
+            conv.chat_id, [msg.id, response.id, poto.id]
+        ")
         await event.delete()
 
 
