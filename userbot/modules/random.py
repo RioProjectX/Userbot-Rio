@@ -43,12 +43,10 @@ async def _(event):
     if event.fwd_from:
         return
     text = event.pattern_match.group(1)
-    oke = text[0]
-    mmk = lol[oke]
     chat = "@tdtapibot"
     async with event.client.conversation(chat) as conv:
         try:
-            msg = await conv.send_message(mmk["cmd"])
+            msg = await conv.send_message(f"{text}")
             response = await conv.get_response()
             poto = await conv.get_response()
             """ - don't spam notif - """
@@ -62,7 +60,7 @@ async def _(event):
             event.chat_id,
             poto
         )
-        await event.client.delete_messages(
+        #await event.client.delete_messages(
             conv.chat_id, [msg.id, response.id, logo.id]
         )
         await event.delete()
