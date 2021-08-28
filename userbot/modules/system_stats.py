@@ -227,7 +227,7 @@ async def amireallyalive(alive):
     user = await bot.get_me()
     uptime = await get_readable_time((time.time() - StartTime))
     output = (
-        f" **┗┓ ✮ {DEFAULTUSER} USERBOT ✮ ┏┛** \n"
+        f" **┗┓ ✮ RIO USERBOT ✮ ┏┛** \n"
         f"\n**{ALIVE_TEKS_CUSTOM}**\n"
         f"**━━━━━━━━━━━━━━━**\n"
         f"**✮ Master ✮** \n"
@@ -241,9 +241,9 @@ async def amireallyalive(alive):
         f"┣ ✥ `Modules  : `{len(modules)} \n"
         f"┣ ✥ `Uptime   : `{uptime} \n"
         f"┗━━━━━━━━━━━━━━━━ \n"
-        f"⚡️ **Repo Userbot :** [Man-Userbot](https://github.com/mrismanaziz/Man-Userbot) \n"
+        f"⚡️ **Repo Userbot :** [Rio-Userbot](https://github.com/RioProjectX/Userbot-Rio) \n"
         f"⚡️ **Grup Userbot :** [Tekan Disini](https://t.me/sharinguserbot) \n"
-        f"⚡️ **Owner :** [Risman](t.me/mrismanaziz) \n"
+        f"⚡️ **Owner :** [Rio](t.me/riio00) \n"
     )
     if ALIVE_LOGO:
         try:
@@ -270,7 +270,7 @@ async def amireallyalive(alive):
     user = await bot.get_me()
     uptime = await get_readable_time((time.time() - StartTime))
     output = (
-        f"۝⩵►{DEFAULTUSER} USERBOT◄⩵۝\n \n"
+        f"۝⩵►RIO USERBOT◄⩵۝\n \n"
         f"╭━━━━━━━━━━━━━━━━━━━━━╮\n"
         f"┣[•👤 `USER     :`{DEFAULTUSER}\n"
         f"┣[ 👁‍🗨 `Username :`@{user.username}\n"
@@ -317,7 +317,7 @@ async def amireallyalive(alive):
         f"{ALIVE_EMOJI} **Python Version :** `{python_version()}` \n"
         f"{ALIVE_EMOJI} **Telethon Version :** `{version.__version__}` \n"
         f"{ALIVE_EMOJI} **Bot Uptime :** `{uptime}` \n\n"
-        "    **[𝗦𝘂𝗽𝗽𝗼𝗿𝘁](https://t.me/sharinguserbot)** | **[𝗖𝗵𝗮𝗻𝗻𝗲𝗹](https://t.me/Lunatic0de)** | **[𝗢𝘄𝗻𝗲𝗿](t.me/mrismanaziz)**"
+        "    **[𝗦𝘂𝗽𝗽𝗼𝗿𝘁](https://t.me/SIINIAJA)** | **[𝗖𝗵𝗮𝗻𝗻𝗲𝗹](https://t.me/SIINIAJA)** | **[𝗢𝘄𝗻𝗲𝗿](t.me/RIIO00)**"
     )
     if ALIVE_LOGO:
         try:
